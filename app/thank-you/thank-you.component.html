@@ -1,0 +1,6 @@
+<div class="thank-you">
+    <h2>Thank You for Your Response!</h2>
+    <p *ngIf="rating === 2">Sorry for your bad experience. We'll fix everything accordingly.</p>
+    <p *ngIf="rating === 5">Thank you for your excellent feedback!</p>
+    <p *ngIf="rating !== 2 && rating !== 5">We appreciate your feedback!</p>
+  </div>

@@ -1,0 +1,39 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to Luxury Hotel</h1>
+      <p>Your perfect stay, just a click away!</p>
+      <button (click)="bookNow()">Book Now</button> <!-- ✅ Navigates to Hotel List -->
+    </div>
+  </header>
+
+  <h2 class="section-title">Top Hotels</h2>
+
+  <!-- Container for all hotel cards -->
+  <div class="features-container">
+    <div class="hotels-box">
+      <section class="features">
+        <div class="feature-card" *ngFor="let feature of features" (click)="goToHotel(feature.id)">
+          <img [src]="feature.image" alt="Feature Image" />
+          <h3>{{ feature.title }}</h3>
+          <p><strong>Location:</strong> {{ feature.location }}</p>
+          <p>{{ feature.description }}</p>
+          <p class="rating">
+            <strong>Rating:</strong>
+            <span class="stars">
+              <span *ngFor="let star of getStars(feature.rating)">{{ star }}</span>
+            </span> ({{ feature.rating }})
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ✅ About Us Section with Navigation Button -->
+  <div class="about-us-section">
+    <h2>Learn More About Us</h2>
+    <p>Discover our story, vision, and mission.</p>
+    <button (click)="goToAboutUs()">About Us</button>
+  </div>
+</div>

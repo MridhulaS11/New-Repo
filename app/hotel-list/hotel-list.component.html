@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <!-- Filter Section -->
+    <div class="row">
+      <div class="col-12">
+        <div class="filter-section">
+          <h4 class="text-center fw-bold mb-3">🔍 Filter Hotels</h4>
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label for="location">📍 Location</label>
+              <select class="form-select" [(ngModel)]="selectedLocation" id="location">
+                <option value="">All Locations</option>
+                <option *ngFor="let location of uniqueLocations" [value]="location">{{ location }}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="roomType">🏨 Room Type</label>
+              <select class="form-select" [(ngModel)]="selectedRoomType" id="roomType">
+                <option value="">All Room Types</option>
+                <option *ngFor="let room of uniqueRoomTypes" [value]="room">{{ room }}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="amenity">🛎️ Amenities</label>
+              <select class="form-select" [(ngModel)]="selectedAmenity" id="amenity">
+                <option value="">All Amenities</option>
+                <option *ngFor="let amenity of uniqueAmenities" [value]="amenity">{{ amenity }}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="hotelName">🏢 Hotel Name</label>
+              <select class="form-select" [(ngModel)]="selectedHotel" id="hotelName">
+                <option value="">All Hotels</option>
+                <option *ngFor="let hotel of uniqueHotelNames" [value]="hotel">{{ hotel }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Hotel List Section -->
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="row g-3">
+          <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let hotel of filteredHotels()">
+            <div class="card hotel-card">
+              <!-- Bootstrap Carousel for Multiple Images -->
+              <div id="carousel{{hotel.id}}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item" *ngFor="let img of hotel.images; let first = first" [ngClass]="{'active': first}">
+                    <img [src]="img" class="d-block w-100 hotel-img">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + hotel.id" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + hotel.id" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ hotel.name }}</h5>
+                <p class="card-text"> {{ hotel.description }}</p>
+                <p class="card-text"><strong>Location:</strong> {{ hotel.location }}</p>
+                <p class="card-text"><strong>Room Type:</strong> {{ hotel.roomType }}</p>
+                <p class="card-text"><strong>Amenities:</strong> {{ hotel.amenities.join(', ') }}</p>
+                <p class="card-text"><strong>Rating:</strong> ⭐ {{ hotel.rating }}</p>
+                <button class="btn btn-primary" (click)="goToReservation(hotel.id)">Book Now</button> <!-- ✅ Navigates to Reservation Page -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

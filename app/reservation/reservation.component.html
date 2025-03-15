@@ -1,0 +1,35 @@
+<div class="reservation-container">
+  <h2>Reservations</h2>
+
+  <form #reservationForm="ngForm" (ngSubmit)="addReservation(reservationForm)">
+    
+    <input type="text" placeholder="Guest Name" [(ngModel)]="newReservation.guestName" name="guestName" required #guestName="ngModel">
+    <div class="error" *ngIf="guestName.invalid && guestName.touched">Name is required.</div>
+
+    <input type="email" placeholder="Guest Email" [(ngModel)]="newReservation.guestEmail" name="guestEmail" required 
+    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" #guestEmail="ngModel">
+    <div class="error" *ngIf="guestEmail.invalid && guestEmail.touched">Valid email is required.</div>
+
+    <input type="text" placeholder="Guest Phone" [(ngModel)]="newReservation.guestPhone" name="guestPhone" required 
+    pattern="^[0-9]{10}$" #guestPhone="ngModel">
+    <div class="error" *ngIf="guestPhone.invalid && guestPhone.touched">Please enter a Valid Phone Number.</div>
+
+    <input type="date" [(ngModel)]="newReservation.checkInDate" name="checkInDate" required #checkInDate="ngModel">
+    <div class="error" *ngIf="checkInDate.invalid && checkInDate.touched">Check-in date is required.</div>
+
+    <input type="date" [(ngModel)]="newReservation.checkOutDate" name="checkOutDate" required #checkOutDate="ngModel">
+    <div class="error" *ngIf="checkOutDate.invalid && checkOutDate.touched">Check-out date is required.</div>
+
+    <input type="number" min="1" placeholder="Room ID" [(ngModel)]="newReservation.roomId" name="roomId" required #roomId="ngModel">
+    <div class="error" *ngIf="roomId.invalid && roomId.touched">Room ID is required.</div>
+
+    <button type="submit" [disabled]="reservationForm.invalid">Add Reservation</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let res of reservations">
+      <strong>{{ res.guestName }}</strong> - {{ res.checkInDate }} to {{ res.checkOutDate }} 
+      <button (click)="deleteReservation(res.reservationId)">❌</button>
+    </li>
+  </ul>
+</div>

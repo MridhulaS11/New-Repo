@@ -1,0 +1,161 @@
+/* Reservation Container */
+.reservation-container {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px;
+    max-width: 700px;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: slideIn 1s ease-in-out;
+    padding: 20px;
+}
+
+/* Inputs */
+input {
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Focus Effect */
+input:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 12px rgba(40, 167, 69, 0.6);
+    outline: none;
+    transform: scale(1.03);
+}
+
+/* Error Message */
+.error {
+    color: #dc3545;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+/* Show Error Message */
+input.ng-invalid.ng-touched + .error {
+    opacity: 1;
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Button */
+button {
+    padding: 12px;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Hover */
+button:hover {
+    background: linear-gradient(135deg, #df387b, #c71f6a);
+    transform: scale(1.07);
+    box-shadow: 0 5px 15px rgba(223, 56, 123, 0.4);
+}
+
+/* Button Click Animation */
+button:active {
+    transform: scale(0.96);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* ✅ Flying Object Styling */
+.flying-object {
+    position: fixed;
+    top: 50%;
+    left: -50px; /* Start from outside the screen */
+    width: 50px;
+    height: 50px;
+    background: url('/assets/images/fly.png') no-repeat center/contain;
+    animation: flyAcross 4s linear forwards;
+    z-index: 1000;
+}
+
+/* ✅ Flying Animation */
+@keyframes flyAcross {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    30% {
+        transform: translateX(30vw) translateY(-50px) rotate(20deg);
+    }
+    60% {
+        transform: translateX(60vw) translateY(30px) rotate(-15deg);
+    }
+    100% {
+        transform: translateX(100vw) translateY(0) rotate(0deg);
+    }
+}
+
+/* ✅ Responsive Adjustments */
+@media (max-width: 768px) {
+    .reservation-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    input, button {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .flying-object {
+        width: 35px;
+        height: 35px;
+        animation-duration: 3s;
+    }
+}

@@ -1,0 +1,60 @@
+<div class="feedback-container">
+  <h2>Feedback</h2>
+  <form (ngSubmit)="onSubmit()" class="feedback-form">
+    <!-- Name Input -->
+    <div class="form-group">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" [(ngModel)]="feedback.name" name="name" required>
+    </div>
+
+    <!-- Overall Service Rating -->
+    <div class="form-group">
+      <label>Overall Service:</label>
+      <div class="star-rating">
+        <span *ngFor="let star of [1, 2, 3, 4, 5]" (click)="setRating('overall', star)" [class.active]="star <= feedback.overallRating">
+          <img src="assets/starfish.png" alt="Starfish" class="starfish-icon">
+        </span>
+      </div>
+      <p class="rating-text">
+        {{ feedback.overallRating === 5 ? 'Excellent' :
+           feedback.overallRating === 4 ? 'Good' :
+           feedback.overallRating === 3 ? 'Average' :
+           feedback.overallRating === 2 ? 'Bad' :
+           feedback.overallRating === 1 ? 'Worst' :
+           'No Rating' }}
+      </p>
+    </div>
+
+    <!-- Feedback Categories -->
+    <div class="form-group">
+      <label>Tell us what can be improved:</label>
+      <div class="categories">
+        <div class="category" (click)="toggleCategory('customerSupport')" [class.active]="feedback.categories.includes('customerSupport')">
+          Customer Support
+        </div>
+        <div class="category" (click)="toggleCategory('pickupDelivery')" [class.active]="feedback.categories.includes('pickupDelivery')">
+          Pickup & Delivery Service
+        </div>
+        <div class="category" (click)="toggleCategory('serviceEfficiency')" [class.active]="feedback.categories.includes('serviceEfficiency')">
+          Service & Efficiency
+        </div>
+        <div class="category" (click)="toggleCategory('transparency')" [class.active]="feedback.categories.includes('transparency')">
+          Transparency
+        </div>
+      </div>
+    </div>
+
+    <!-- Other Suggestions -->
+    <div class="form-group">
+      <label for="suggestions">Other suggestions:</label>
+      <textarea id="suggestions" [(ngModel)]="feedback.suggestions" name="suggestions"></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div id="water-simulation"></div>
